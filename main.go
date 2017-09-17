@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 	"strconv"
 	"github.com/fogleman/gg"
@@ -46,15 +45,21 @@ type Config struct {
 
 func main()  {
 
+	log.Println("Reading config file...")
 	conf, err := ioutil.ReadFile("config.json")
 	if err != nil {
 		log.Fatal("Cannot open config.json")
 	}
 
 	var j Config
-	json.Unmarshal(conf,&j)
+	err = json.Unmarshal(conf,&j)
+	if err != nil {
+		log.Fatal("Cannot decode JSON from file ")
+	}
+	log.Println("Config file is read!")
 
 	//init configs
+	log.Println("Initializing...")
 	START_POINT := Point{x: j.Start.X, y: j.Start.Y, state:START}
 	END_POINT := Point{x: j.End.X, y: j.End.Y, state:END}
 	WIDTH = j.Width
@@ -85,18 +90,22 @@ func main()  {
 		matrix[o.X][o.Y].state = BLOCKED
 	}
 
+	log.Println("Initialization is completed!")
+
 	for {
 		//get new Point with min F value
 		current := *MinF(open)
 
 		//when we find the end
 		if current.Equal(END_POINT) {
-			fmt.Println("Path is found")
+			log.Println("Path is found")
 
+			log.Print("Points in path: ")
 			for !current.Equal(START_POINT) {
 				current = *current.parent
 				if !current.Equal(START_POINT){
 					matrix[current.x][current.y].state = PATH
+					log.Print(matrix[current.x][current.y], " ")
 				}
 			}
 			break
@@ -105,6 +114,7 @@ func main()  {
 	}
 
 	drawResult(&matrix)
+	log.Println("Exited!")
 //end
 }
 
@@ -209,6 +219,8 @@ func generateNeighboursCoord(curr Point) (res []Point)  {
 }
 
 func drawResult(m *[][]Point)  {
+	log.Println("Drawing started")
+	fileName := "out.png"
 	//radius
 	r := WIDTH*HEIGHT/4
 	//init image
@@ -233,5 +245,6 @@ func drawResult(m *[][]Point)  {
 			dc.Fill()
 		}
 	}
-	dc.SavePNG("out.png")
+	dc.SavePNG(fileName)
+	log.Println("Drawing finished and saved to file - ", fileName)
 }
