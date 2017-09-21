@@ -13,7 +13,7 @@ func TestGetH(t *testing.T) {
 	got := GetH(a, b)
 
 	if got != expect {
-		t.Errorf("Expected: %v, got %v",expect,  got)
+		t.Errorf("Expected: %v, Got: %v",expect,  got)
 	}
 }
 
@@ -26,7 +26,7 @@ func TestPoint_GetG_14(t *testing.T) {
 	got := a.GetG(b)
 
 	if got != expect {
-		t.Errorf("Expected: %v, got %v",expect,  got)
+		t.Errorf("Expected: %v, Got: %v",expect,  got)
 	}
 }
 
@@ -39,7 +39,7 @@ func TestPoint_GetG_10(t *testing.T) {
 	got := a.GetG(b)
 
 	if got != expect {
-		t.Errorf("Expected: %v, got %v",expect,  got)
+		t.Errorf("Expected: %v, Got: %v",expect,  got)
 	}
 }
 
@@ -50,7 +50,7 @@ func TestPoint_GetF(t *testing.T) {
 	got := p.GetF()
 
 	if got != expect {
-		t.Errorf("Expected: %v, got %v",expect,  got)
+		t.Errorf("Expected: %v, Got: %v",expect,  got)
 	}
 }
 
@@ -61,7 +61,7 @@ func TestPoint_Key(t *testing.T) {
 	got := p.Key()
 
 	if got != expect {
-		t.Errorf("Expected: %v, got %v",expect,  got)
+		t.Errorf("Expected: %v, Got: %v",expect,  got)
 	}
 }
 
@@ -73,7 +73,7 @@ func TestPoint_Equal_true(t *testing.T) {
 	got := p1.Equal(p2)
 
 	if got != expect {
-		t.Errorf("Expected: %v, got %v",expect,  got)
+		t.Errorf("Expected: %v, Got: %v",expect,  got)
 	}
 }
 
@@ -85,6 +85,6 @@ func TestPoint_Equal_false(t *testing.T) {
 	got := p1.Equal(p2)
 
 	if got != expect {
-		t.Errorf("Expected: %v, got %v",expect,  got)
+		t.Errorf("Expected: %v, Got: %v",expect,  got)
 	}
 }
