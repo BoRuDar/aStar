@@ -165,7 +165,7 @@ func (p Point) GetF() int {
 }
 
 func (p Point) Key() string {
-	return strconv.Itoa(p.x) + strconv.Itoa(p.y)
+	return strconv.Itoa(p.x) + ":" + strconv.Itoa(p.y)
 }
 
 func (a Point) Equal(b Point) bool {
