@@ -169,10 +169,7 @@ func (p Point) Key() string {
 }
 
 func (a Point) Equal(b Point) bool {
-	if a.x == b.x && a.y == b.y {
-		return true
-	}
-	return false
+	return a.x == b.x && a.y == b.y
 }
 
 func MinF(points Points) (min *Point){
